@@ -207,7 +207,13 @@ public class MainActivity extends AppCompatActivity {
                 .execute();
 */
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNewsData();
     }
+}
 
 
 

@@ -7,8 +7,10 @@ package com.bootcamp.bootcampcrud.APIService;
 
 
 import com.bootcamp.bootcampcrud.servicemodel.newsmodel.NewsModel;
+import com.bootcamp.bootcampcrud.servicemodel.updatemodel.UpdateOrder;
 
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -27,6 +29,18 @@ import retrofit2.http.Query;
 
  @GET("api/bootcampnews/all")
  Call<NewsModel> getNews();
+
+ @Multipart
+ @POST("api/bootcampnews/update")
+ Call<UpdateOrder> updateData(
+         @Part("id") RequestBody id,
+         @Part("title") RequestBody title,
+         @Part("content") RequestBody content,
+         @Part("author") RequestBody author,
+
+
+         @Part MultipartBody.Part image
+ );
 
 
 }
