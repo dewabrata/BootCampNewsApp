@@ -18,6 +18,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,6 +68,8 @@ public class NewsDetail extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
     Bootcampnews data;
 
+    String type ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +77,7 @@ public class NewsDetail extends AppCompatActivity {
 
 
         data  = (Bootcampnews) getIntent().getExtras().getSerializable("data");
-
+        type  =  getIntent().getExtras().getString("type");
 
 
         setContentView(R.layout.activity_news_detail);
@@ -99,11 +103,14 @@ public class NewsDetail extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                save();
+
+                if (type.equalsIgnoreCase("update")) {
+                    save();
+                }
             }
         });
 
-        if (data!=null){
+        if (data!=null && type.equalsIgnoreCase("update")){
 
             txtTitle.setText(data.getTitle().toString());
             txtAuthor.setText(data.getAuthor().toString());
@@ -324,5 +331,7 @@ public class NewsDetail extends AppCompatActivity {
             }
         });
     }
+
+
 
 }
